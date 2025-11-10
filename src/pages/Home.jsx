@@ -1,5 +1,5 @@
 import Carousel from "../components/carousel";
-import useFetch from "../hooks/usefetch";
+import useFetch from "../hooks/useFetch";
 import Card from "../components/card";
 
 const Home = () => {
