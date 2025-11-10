@@ -24,5 +24,10 @@
     "shoes": "Shoes",
     "accessories": "Accessories",
     "more": "More"
+  },
+
+  "common": {
+    "tomorrow": "Tomorrow",
+    "monthly": "per month"
   }
 }

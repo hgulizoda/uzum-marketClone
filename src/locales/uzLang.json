@@ -24,5 +24,9 @@
     "shoes": "Poyabzallar",
     "accessories": "Aksessuarlar",
     "more": "Yana"
+  },
+  "common": {
+    "tomorrow": "Ertaga",
+    "monthly": "oyiga"
   }
 }

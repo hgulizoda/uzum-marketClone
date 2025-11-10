@@ -1,8 +1,18 @@
-import { Stack, Button, ButtonGroup, IconButton, Box } from "@mui/material";
+import {
+  Stack,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-// import uzbLogo from "../assets/icons/uzbLogo.png";
+import uzbLogo from "../assets/icons/uzbLogo.png";
 import uzumLogo from "../assets/icons/uzumLogo.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
@@ -12,6 +22,7 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useTranslation } from "react-i18next";
 import useAppContext from "../hooks/useAppContext";
 import { useEffect, useState } from "react";
+import ukLogo from "../assets/icons/united-kingdom.png";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -111,10 +122,54 @@ const Header = () => {
             <Button variant="text" color="black">
               {t("header.orders")}
             </Button>
-            <select onChange={handleLangChange}>
-              <option value="uz">O'zbek</option>
-              <option value="en">English</option>
-            </select>
+            <FormControl
+              variant="outlined"
+              sx={{
+                minWidth: 100,
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none", // removes border
+                },
+                "& .MuiSelect-select": {
+                  padding: "6px 12px", // custom padding
+                  display: "flex",
+                  alignItems: "center",
+                },
+              }}
+            >
+              <Select
+                labelId="lang-select-label"
+                id="lang-select"
+                onChange={handleLangChange}
+                defaultValue="uz"
+                sx={{
+                  backgroundColor: "transparent",
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              >
+                <MenuItem value="uz">
+                  <img
+                    src={uzbLogo}
+                    alt="uz"
+                    style={{ width: 18, marginRight: 7 }}
+                  />
+                  O'zbek
+                </MenuItem>
+
+                <MenuItem value="en">
+                  <img
+                    src={ukLogo}
+                    alt="uz"
+                    style={{ width: 18, marginRight: 7 }}
+                  />
+                  English
+                </MenuItem>
+              </Select>
+            </FormControl>
           </Stack>
         </Stack>
       </Stack>
