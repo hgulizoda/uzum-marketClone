@@ -1,5 +1,5 @@
 import { Stack, Button, ButtonGroup, IconButton, Box } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 // import uzbLogo from "../assets/icons/uzbLogo.png";
@@ -11,10 +11,18 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useTranslation } from "react-i18next";
 import useAppContext from "../hooks/useAppContext";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const { cart } = useAppContext();
+  const navigate = useNavigate();
+  const [direction, setDirection] = useState("");
+  useEffect(() => {
+    if (direction) {
+      navigate(direction);
+    }
+  }, [direction, navigate]);
   function handleLangChange(e) {
     i18n.changeLanguage(e.target.value);
   }
@@ -119,7 +127,13 @@ const Header = () => {
         paddingBlock="17px"
         justifyContent="space-between"
       >
-        <img src={uzumLogo} alt="Uzum logo" width="20%" height="32px" />
+        <img
+          src={uzumLogo}
+          alt="Uzum logo"
+          width="20%"
+          height="32px"
+          onClick={() => setDirection("/")}
+        />
         <Stack direction="row" width="50%" spacing="12px">
           <Button
             variant="contained"
@@ -185,8 +199,9 @@ const Header = () => {
             startIcon={<LocalMallIcon />}
             color="black"
             size="large"
+            onClick={() => setDirection("/cart")}
           >
-            Savat{" "}
+            Savat
             <Box
               backgroundColor="primary.main"
               color="white"

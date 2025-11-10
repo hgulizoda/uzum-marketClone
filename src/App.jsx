@@ -5,6 +5,7 @@ import Layout from "./components/layout";
 import Home from "./pages/Home";
 import { useState } from "react";
 import { Context } from "./context";
+import Cart from "./pages/Cart";
 
 const theme = createTheme({
   palette: {
@@ -42,6 +43,7 @@ const App = () => {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
         </Routes>
       </Context.Provider>
