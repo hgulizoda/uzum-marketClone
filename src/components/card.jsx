@@ -4,12 +4,43 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import useAppContext from "../hooks/useAppContext";
 
 const Card = (product) => {
-  const inCart = false;
-
   const { setCart, cart } = useAppContext();
+  const inCart = cart.find((p) => p.id === product.id);
   function moveToCart() {
-    setCart(product);
+    if (inCart) {
+      const newData = cart.map((p) => {
+        if (p.id === product.id) {
+          return { ...p, count: p.count + 1 };
+        } else {
+          return p;
+        }
+      });
+      setCart(newData);
+    } else {
+      setCart([...cart, { ...product, count: 1 }]);
+    }
   }
+
+  function handleDecrement() {
+    if (inCart.count === 1) {
+      const NewData = cart.filter((p) => p.id !== product.id);
+      setCart(NewData);
+    } else {
+      if (inCart) {
+        const newData = cart.map((p) => {
+          if (p.id === product.id) {
+            return { ...p, count: p.count - 1 };
+          } else {
+            return p;
+          }
+        });
+        setCart(newData);
+      } else {
+        setCart([...cart, { ...product, count: 1 }]);
+      }
+    }
+  }
+
   return (
     <>
       <Box>
@@ -62,6 +93,7 @@ const Card = (product) => {
               backgroundColor: "#F0F2F5",
               padding: "3px",
               borderRadius: "4px",
+              marginTop: "10px",
             }}
           >
             <Button
@@ -72,10 +104,11 @@ const Card = (product) => {
                 height: "95%",
                 aspectRatio: "1/1",
               }}
+              onClick={moveToCart}
             >
               +
             </Button>
-            <Typography>1</Typography>
+            <Typography>{inCart.count}</Typography>
             <Button
               sx={{
                 width: "16px",
@@ -84,6 +117,7 @@ const Card = (product) => {
                 height: "95%",
                 aspectRatio: "1/1",
               }}
+              onClick={handleDecrement}
             >
               -
             </Button>
@@ -93,6 +127,7 @@ const Card = (product) => {
             startIcon={<LocalMallIcon />}
             variant="contained"
             sx={{ width: "100%", padding: "4px", marginTop: "10px" }}
+            onClick={moveToCart}
           >
             Ertaga
           </Button>

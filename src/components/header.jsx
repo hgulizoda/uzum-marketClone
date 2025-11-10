@@ -1,4 +1,4 @@
-import { Stack, Button, ButtonGroup, IconButton } from "@mui/material";
+import { Stack, Button, ButtonGroup, IconButton, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -10,9 +10,11 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useTranslation } from "react-i18next";
+import useAppContext from "../hooks/useAppContext";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
+  const { cart } = useAppContext();
   function handleLangChange(e) {
     i18n.changeLanguage(e.target.value);
   }
@@ -184,7 +186,23 @@ const Header = () => {
             color="black"
             size="large"
           >
-            Savat
+            Savat{" "}
+            <Box
+              backgroundColor="primary.main"
+              color="white"
+              sx={{
+                paddingInline: "7px",
+                marginLeft: "5px",
+                borderRadius: "10%",
+                height: "70%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "12px",
+              }}
+            >
+              {cart.length}
+            </Box>
           </Button>
         </Stack>
       </Stack>
