@@ -26,6 +26,14 @@
     "more": "More"
   },
 
+  "cart": {
+    "yourCart": "Savatingiz",
+    "products": "mahsulot",
+    "selectAll": "Hammasini tanlash",
+    "cartEmpty": "Savatingiz hozircha bo'sh",
+    "deliveringToPickUps": "Pay ${{neededAmount}} and it will be ${{deliveryFee}}"
+  },
+
   "common": {
     "tomorrow": "Tomorrow",
     "monthly": "per month"

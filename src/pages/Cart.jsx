@@ -10,16 +10,36 @@ import useAppContext from "../hooks/useAppContext";
 import CartCard from "../components/cartCard";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import { useTranslation } from "react-i18next";
+import { useMemo, useState } from "react";
 
 const Cart = () => {
   const { cart } = useAppContext();
   const { t } = useTranslation();
+  let totalPrice = useMemo(
+    () =>
+      cart.reduce((sum, cur) => {
+        sum += cur.price * cur.count;
+        return sum;
+      }, 0),
+    [cart]
+  );
+
+  let totalPriceWithUzumCard = useMemo(
+    () =>
+      cart.reduce((sum, cur) => {
+        sum += (cur.price * (100 - cur.discountPercentage) * cur.count) / 100;
+        return sum;
+      }, 0),
+    [cart]
+  );
 
   return (
     <main className="container">
       <h2 style={{ marginBlock: "30px 20px" }}>
-        {t("hero.Tashkent")},
-        <span style={{ color: "gray" }}>{cart.length} mahsulot</span>
+        {t("cart.yourCart")},
+        <span style={{ color: "gray" }}>
+          {cart.length} {t("cart.products")}
+        </span>
       </h2>
       <Stack width="100%" direction="row" justifyContent="space-between">
         <Box
@@ -39,7 +59,7 @@ const Cart = () => {
           >
             <FormControlLabel
               control={<Checkbox defaultChecked />}
-              label="Hammasini tanlash"
+              label={t("cart.selectAll")}
             />
           </Stack>
 
@@ -64,13 +84,13 @@ const Cart = () => {
             variant="h6"
             sx={{ textAlign: "center", fontWeight: "bold", fontSize: "16px" }}
           >
-            Topshirish punktiga yetkazib berish $5
+            {t("cart.deliveringToPickUps")} $5
           </Typography>
           <Typography
             variant="h6"
             sx={{ textAlign: "center", fontSize: "14px", color: "gray" }}
           >
-            Yana $32 va $3 bo'ladi
+            {/* {t("header.moreInfo", { neededAmount, deliveryFee })} */}
           </Typography>
           <Box
             sx={{
@@ -85,7 +105,16 @@ const Cart = () => {
               sx={{
                 height: "100%",
                 borderRadius: "5px",
-                width: "60%",
+                width:
+                  totalPriceWithUzumCard < 50
+                    ? `${(33 * totalPriceWithUzumCard) / 50}%`
+                    : totalPriceWithUzumCard < 100 &&
+                      totalPriceWithUzumCard > 50
+                    ? (66 * totalPriceWithUzumCard) / 100
+                    : totalPriceWithUzumCard < 150 &&
+                      totalPriceWithUzumCard > 100
+                    ? (100 * totalPriceWithUzumCard) / 150
+                    : "100%",
                 backgroundColor: "primary.main",
               }}
             ></Box>
@@ -112,7 +141,7 @@ const Cart = () => {
               <Typography fontSize="14px">
                 Mahsulotlar ({cart.length}):
               </Typography>
-              <Typography fontSize="14px">$totalPrice</Typography>
+              <Typography fontSize="14px">${totalPrice.toFixed(2)}</Typography>
             </Stack>
 
             <Typography fontSize="16px" marginBlock="12px" fontWeight="550">
@@ -121,7 +150,22 @@ const Cart = () => {
 
             <Stack direction="row" justifyContent="space-between">
               <Typography fontSize="14px">Uzum karta bilan</Typography>
-              <Typography>Price</Typography>
+              <Stack>
+                <Typography
+                  sx={{
+                    textAlign: "right",
+                    color: "primary.main",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ${totalPriceWithUzumCard.toFixed(2)}
+                </Typography>
+                <Typography color="#0ebb48ff" fontSize="14px" fontWeight="bold">
+                  Tejovingiz: $
+                  {(totalPrice - totalPriceWithUzumCard).toFixed(2)}
+                </Typography>
+              </Stack>
             </Stack>
             <Stack
               direction="row"
@@ -129,7 +173,9 @@ const Cart = () => {
               sx={{ marginTop: "20px" }}
             >
               <Typography fontSize="14px">Uzum kartasiz</Typography>
-              <Typography>Price</Typography>
+              <Typography fontWeight="bold">
+                ${totalPrice.toFixed(2)}
+              </Typography>
             </Stack>
           </Box>
           <Button
