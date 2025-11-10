@@ -4,7 +4,6 @@ import Card from "../components/card";
 
 const Home = () => {
   const { data, isLoading, error } = useFetch("https://dummyjson.com/products");
-  console.log(data, isLoading, error);
 
   return (
     <>

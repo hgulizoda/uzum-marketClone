@@ -18,6 +18,7 @@ const Header = () => {
   const { cart } = useAppContext();
   const navigate = useNavigate();
   const [direction, setDirection] = useState("");
+
   useEffect(() => {
     if (direction) {
       navigate(direction);
@@ -56,7 +57,7 @@ const Header = () => {
                 fontSize: "14px",
               }}
             >
-              {t("Tashkent")}
+              {t("header.location")}
             </Button>
             <Button
               variant="text"
@@ -67,7 +68,7 @@ const Header = () => {
                 fontSize: "14px",
               }}
             >
-              Topshirish punktlari
+              {t("header.pickupPoints")}
             </Button>
           </Stack>
 
@@ -101,14 +102,14 @@ const Header = () => {
                 },
               }}
             >
-              <Button>Sotuvchi bo'lish</Button>
-              <Button>Topshirish punktini ochish</Button>
+              <Button>{t("header.becomeSeller")}</Button>
+              <Button>{t("header.openPickupPoint")}</Button>
             </ButtonGroup>
             <Button variant="text" color="black">
-              Savol-javob
+              {t("header.faq")}
             </Button>
             <Button variant="text" color="black">
-              Buyurtmalarim
+              {t("header.orders")}
             </Button>
             <select onChange={handleLangChange}>
               <option value="uz">O'zbek</option>
@@ -140,7 +141,7 @@ const Header = () => {
             sx={{ color: "primary" }}
             startIcon={<HorizontalSplitIcon />}
           >
-            Katalog
+            {t("header.catalog")}
           </Button>
           <Stack
             className="header-search_input"
@@ -154,7 +155,7 @@ const Header = () => {
           >
             <input
               type="text"
-              placeholder="Mahsulotlar va turkumlar izlash"
+              placeholder={t("header.searchPlaceholder")}
               style={{
                 outline: "none",
                 border: "none",
@@ -184,7 +185,7 @@ const Header = () => {
             color="black"
             size="large"
           >
-            Kirish
+            {t("header.login")}
           </Button>
           <Button
             variant="text"
@@ -192,7 +193,7 @@ const Header = () => {
             color="black"
             size="large"
           >
-            Saralangan
+            {t("header.favorites")}
           </Button>
           <Button
             variant="text"
@@ -201,7 +202,7 @@ const Header = () => {
             size="large"
             onClick={() => setDirection("/cart")}
           >
-            Savat
+            {t("header.cart")}
             <Box
               backgroundColor="primary.main"
               color="white"
@@ -236,27 +237,27 @@ const Header = () => {
             src="https://static.uzum.uz/fast_categories/Topsales.png"
             alt=""
           />
-          Hafta tovarlari
+          {t("header.weekProducts")}
         </NavLink>
         <NavLink className="bold">
           <img src="https://static.uzum.uz/baner/feshn3110.png" alt="" />
-          Qishki kolleksiya
+          {t("header.winterCollection")}
         </NavLink>
         <NavLink className="bold">
           <img src="https://static.uzum.uz/baner/hobbi2110.png" alt="" />
-          Hobbi va ijod
+          {t("header.hobbyAndCreativity")}
         </NavLink>
         <NavLink className="bold">
           <img src="https://static.uzum.uz/baner/smart2010.png" alt="" />
-          Smartfonlari
+          {t("header.smartphones")}
         </NavLink>
-        <NavLink>Turizm, baliq ovi va ovchilik</NavLink>
-        <NavLink>Elektronika</NavLink>
-        <NavLink>Maishiy texnika</NavLink>
-        <NavLink>Kiyim</NavLink>
-        <NavLink>Poyabzallar</NavLink>
-        <NavLink>Aksessuarlar</NavLink>
-        <NavLink>Yana</NavLink>
+        <NavLink>{t("header.tourism")}</NavLink>
+        <NavLink>{t("header.electronics")}</NavLink>
+        <NavLink>{t("header.homeAppliances")}</NavLink>
+        <NavLink>{t("header.clothing")}</NavLink>
+        <NavLink>{t("header.shoes")}</NavLink>
+        <NavLink>{t("header.accessories")}</NavLink>
+        <NavLink>{t("header.more")}</NavLink>
       </nav>
     </header>
   );

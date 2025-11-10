@@ -9,8 +9,8 @@ import Cart from "./pages/Cart";
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#7F4DFF", gray: "F0F2F5" },
-    secondary: { main: "#ff6f00" },
+    primary: { main: "#7F4DFF" },
+    secondary: { main: "#F0F2F5" },
   },
   typography: {
     fontFamily: "'Poppins', 'Roboto', sans-serif",

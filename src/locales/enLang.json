@@ -1,5 +1,28 @@
 {
-  "hero": {
-    "Tashkent": "Tashkent"
+  "header": {
+    "location": "Tashkent",
+    "pickupPoints": "Pickup points",
+    "becomeSeller": "Become a seller",
+    "openPickupPoint": "Open a pickup point",
+    "faq": "FAQ",
+    "orders": "My orders",
+
+    "catalog": "Catalog",
+    "searchPlaceholder": "Search for products and categories",
+    "login": "Login",
+    "favorites": "Favorites",
+    "cart": "Cart",
+
+    "weekProducts": "Weekly deals",
+    "winterCollection": "Winter collection",
+    "hobbyAndCreativity": "Hobby & creativity",
+    "smartphones": "Smartphones",
+    "tourism": "Tourism, fishing and hunting",
+    "electronics": "Electronics",
+    "homeAppliances": "Home appliances",
+    "clothing": "Clothing",
+    "shoes": "Shoes",
+    "accessories": "Accessories",
+    "more": "More"
   }
 }

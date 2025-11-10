@@ -1,5 +1,28 @@
 {
-  "hero": {
-    "Tashkent": "Toshkent"
+  "header": {
+    "location": "Toshkent",
+    "pickupPoints": "Topshirish punktlari",
+    "becomeSeller": "Sotuvchi bo'lish",
+    "openPickupPoint": "Topshirish punktini ochish",
+    "faq": "Savol-javob",
+    "orders": "Buyurtmalarim",
+
+    "catalog": "Katalog",
+    "searchPlaceholder": "Mahsulotlar va turkumlar izlash",
+    "login": "Kirish",
+    "favorites": "Saralangan",
+    "cart": "Savat",
+
+    "weekProducts": "Hafta tovarlari",
+    "winterCollection": "Qishki kolleksiya",
+    "hobbyAndCreativity": "Xobbi va ijod",
+    "smartphones": "Smartfonlar",
+    "tourism": "Turizm, baliq ovi va ovchilik",
+    "electronics": "Elektronika",
+    "homeAppliances": "Maishiy texnika",
+    "clothing": "Kiyim",
+    "shoes": "Poyabzallar",
+    "accessories": "Aksessuarlar",
+    "more": "Yana"
   }
 }
