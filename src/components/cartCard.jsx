@@ -13,8 +13,47 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import uzumCard from "../assets/icons/uzumCard.svg";
 import { useTranslation } from "react-i18next";
+import useAppContext from "../hooks/useAppContext";
+import { useState } from "react";
 const CartCard = (product) => {
   const { t } = useTranslation();
+  const { cart, setCart } = useAppContext();
+  const [checked, setChecked] = useState(true);
+  function handleCardIncerement() {
+    const newData = cart.map((p) => {
+      if (p.id === product.id) {
+        return { ...p, count: p.count + 1 };
+      } else return p;
+    });
+    setCart(newData);
+  }
+
+  function handleCardDecrement() {
+    const newData = cart.map((p) => {
+      if (p.id === product.id) {
+        return { ...p, count: p.count - 1 };
+      } else return p;
+    });
+    setCart(newData);
+  }
+
+  function deleteFromCart() {
+    const newData = cart.filter((p) => p.id !== product.id);
+    setCart(newData);
+  }
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    const newData = cart.map((p) => {
+      if (p.id == product.id) {
+        return { ...p, checked: checked };
+      } else {
+        return p;
+      }
+    });
+    setCart(newData);
+  };
+
   return (
     <Box sx={{ paddingBlock: "20px", borderBottom: "1px solid lightgray" }}>
       <Typography sx={{ fontSize: "12px", color: "gray" }}>
@@ -29,7 +68,15 @@ const CartCard = (product) => {
 
       <Stack direction="row" justifyContent="space-between">
         <Stack direction="row" spacing="20px">
-          <FormControlLabel control={<Checkbox defaultChecked />} label="" />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={product.checked || false}
+                onChange={handleChange}
+              />
+            }
+            label=""
+          />
           <CardMedia
             component="img"
             image={product.thumbnail}
@@ -59,6 +106,7 @@ const CartCard = (product) => {
                     width: "40px",
                     height: "40px",
                   }}
+                  onClick={handleCardIncerement}
                 >
                   +
                 </IconButton>
@@ -81,6 +129,9 @@ const CartCard = (product) => {
                     width: "40px",
                     height: "40px",
                   }}
+                  onClick={
+                    product.count > 1 ? handleCardDecrement : deleteFromCart
+                  }
                 >
                   -
                 </IconButton>
@@ -100,6 +151,7 @@ const CartCard = (product) => {
               padding: "0",
               marginBottom: "20px",
             }}
+            onClick={deleteFromCart}
           >
             {t("cart.remove")}
           </Button>

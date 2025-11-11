@@ -13,25 +13,34 @@ import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 
 const Cart = () => {
-  const { cart } = useAppContext();
+  const { cart, setCart } = useAppContext();
   const { t } = useTranslation();
-  let totalPrice = useMemo(
-    () =>
-      cart.reduce((sum, cur) => {
-        sum += cur.price * cur.count;
-        return sum;
-      }, 0),
-    [cart]
-  );
 
-  let totalPriceWithUzumCard = useMemo(
-    () =>
-      cart.reduce((sum, cur) => {
-        sum += (cur.price * (100 - cur.discountPercentage) * cur.count) / 100;
-        return sum;
-      }, 0),
-    [cart]
-  );
+  function handleSelectAll(e) {
+    if (!e.target.checked) {
+      const newData = cart.map((p) => ({ ...p, checked: false }));
+      setCart(newData);
+    } else {
+      const newData = cart.map((p) => ({ ...p, checked: true }));
+      setCart(newData);
+    }
+  }
+
+  let totalPrice = useMemo(() => {
+    const newData = cart.filter((p) => p.checked);
+    return newData.reduce((sum, cur) => {
+      return sum + cur.price * cur.count;
+    }, 0);
+  }, [cart]);
+
+  let totalPriceWithUzumCard = useMemo(() => {
+    const newData = cart.filter((p) => p.checked);
+    return newData.reduce((sum, cur) => {
+      return (
+        sum + (cur.price * (100 - cur.discountPercentage) * cur.count) / 100
+      );
+    }, 0);
+  }, [cart]);
 
   return (
     <main className="container">
@@ -65,7 +74,12 @@ const Cart = () => {
                 sx={{ borderBottom: " 1px solid lightgray" }}
               >
                 <FormControlLabel
-                  control={<Checkbox defaultChecked />}
+                  onChange={handleSelectAll}
+                  control={
+                    <Checkbox
+                      checked={cart.length && cart.every((p) => p.checked)}
+                    />
+                  }
                   label={t("cart.selectAll")}
                 />
               </Stack>
