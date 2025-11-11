@@ -14,11 +14,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import uzumCard from "../assets/icons/uzumCard.svg";
 import { useTranslation } from "react-i18next";
 import useAppContext from "../hooks/useAppContext";
-import { useState } from "react";
 const CartCard = (product) => {
   const { t } = useTranslation();
   const { cart, setCart } = useAppContext();
-  const [checked, setChecked] = useState(true);
   function handleCardIncerement() {
     const newData = cart.map((p) => {
       if (p.id === product.id) {
@@ -44,7 +42,6 @@ const CartCard = (product) => {
 
   const handleChange = (event) => {
     const isChecked = event.target.checked;
-    setChecked(isChecked);
 
     const newData = cart.map((p) =>
       p.id === product.id ? { ...p, checked: isChecked } : p
@@ -65,7 +62,7 @@ const CartCard = (product) => {
       </Typography>
 
       <Stack direction="row" justifyContent="space-between">
-        <Stack direction="row" spacing="20px">
+        <Stack direction="row" width="70%">
           <FormControlLabel
             control={
               <Checkbox
@@ -81,12 +78,11 @@ const CartCard = (product) => {
             height="120px"
             sx={{ width: "100px", backgroundColor: "secondary.main" }}
           />
-          <Stack>
+          <Stack sx={{ width: "100%", marginLeft: "20px" }}>
             <Typography variant="paragraph">{product.title}</Typography>
             <Stack
               direction="row"
               justifyContent="space-between"
-              spacing="150px"
               marginTop="10px"
             >
               <Typography sx={{ fontSize: "14px" }}>
