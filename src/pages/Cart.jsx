@@ -109,7 +109,14 @@ const Cart = () => {
                   fontSize: "16px",
                 }}
               >
-                {t("cart.deliveringToPickUps")} $5
+                {t("cart.deliveringToPickUps")}{" "}
+                {totalPriceWithUzumCard < 50
+                  ? "$7"
+                  : totalPriceWithUzumCard < 100
+                  ? "$5"
+                  : totalPriceWithUzumCard < 150
+                  ? "$3"
+                  : "$0"}
               </Typography>
 
               <Box
