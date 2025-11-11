@@ -50,7 +50,25 @@
     "notFound": "Your cart is empty",
     "startFromHome": "Start from the homepage — you can find the desired product through search or browse the collections"
   },
-
+  "footer": {
+    "aboutUs": "About Us",
+    "deliveryPoints": "Delivery Points",
+    "vacancies": "Vacancies",
+    "forUsers": "For Users",
+    "contactUs": "Contact Us",
+    "faq": "FAQ",
+    "forEntrepreneurs": "For Entrepreneurs",
+    "sellOnUzum": "Sell on Uzum",
+    "sellerCabinet": "Seller Cabinet",
+    "openDeliveryPoint": "Open Delivery Point",
+    "downloadApp": "Download App",
+    "appStore": "App Store",
+    "googlePlay": "Google Play",
+    "socialNetworks": "Uzum on Social Networks",
+    "privacyPolicy": "Privacy Policy",
+    "userAgreement": "User Agreement",
+    "copyright": "©2025© XK MCHJ «UZUM MARKET». STIR 309376127. All rights reserved"
+  },
   "common": {
     "tomorrow": "Tomorrow",
     "monthly": "per month"

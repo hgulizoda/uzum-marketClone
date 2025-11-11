@@ -1,7 +1,7 @@
 import Header from "./header";
 import Footer from "./footer";
 import { Outlet } from "react-router-dom";
-const layout = () => {
+const Layout = () => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const layout = () => {
   );
 };
 
-export default layout;
+export default Layout;

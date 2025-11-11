@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import useAppContext from "../hooks/useAppContext";
 import CartCard from "../components/cartCard";
-import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 
@@ -43,7 +42,7 @@ const Cart = () => {
   }, [cart]);
 
   return (
-    <main className="container">
+    <main className="container" style={{ minHeight: "28vh" }}>
       {cart.length ? (
         <>
           <h2 style={{ marginBlock: "30px 20px", display: "flex", gap: "3px" }}>

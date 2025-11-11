@@ -49,6 +49,25 @@
     "notFound": "Savatingiz hozircha bo'sh",
     "startFromHome": "Bosh sahifadan boshlang — kerakli tovarni qidiruv orqali topishingiz yoki to‘plamlarni ko‘rishingiz mumkin"
   },
+  "footer": {
+    "aboutUs": "Biz haqimizda",
+    "deliveryPoints": "Topshirish punktlari",
+    "vacancies": "Vakansiyalar",
+    "forUsers": "Foydalanuvchilarga",
+    "contactUs": "Biz bilan bog‘lanish",
+    "faq": "Savol-Javob",
+    "forEntrepreneurs": "Tadbirkorlarga",
+    "sellOnUzum": "Uzumda soting",
+    "sellerCabinet": "Sotuvchi kabinetiga kirish",
+    "openDeliveryPoint": "Topshirish punktini ochish",
+    "downloadApp": "Ilovani yuklab olish",
+    "appStore": "AppStore",
+    "googlePlay": "Google Play",
+    "socialNetworks": "Uzum ijtimoiy tarmoqlarda",
+    "privacyPolicy": "Maxfiylik kelishuvi",
+    "userAgreement": "Foydalanuvchi kelishuvi",
+    "copyright": "©2025© XK MCHJ «UZUM MARKET». STIR 309376127. Barcha huquqlar himoyalangan"
+  },
   "common": {
     "tomorrow": "Ertaga",
     "monthly": "oyiga"
