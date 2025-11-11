@@ -27,11 +27,28 @@
   },
 
   "cart": {
-    "yourCart": "Savatingiz",
-    "products": "mahsulot",
-    "selectAll": "Hammasini tanlash",
-    "cartEmpty": "Savatingiz hozircha bo'sh",
-    "deliveringToPickUps": "Pay ${{neededAmount}} and it will be ${{deliveryFee}}"
+    "selectAll": "Select all",
+    "deliveringToPickUps": "Delivering to pickup points",
+    "deliveringToPickUpsPrice": "Delivery price",
+    "tomorrowDelivery": "Will be delivered tomorrow",
+    "deliveredByUzumMarket": "Delivered by Uzum Market",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "price": "Price",
+    "seller": "Seller",
+    "products": "product(s)",
+    "products_count": "Products ({count}):",
+    "yourOrder": "Your order",
+    "total": "Total",
+    "withCard": "With Uzum card",
+    "withoutCard": "Without Uzum card",
+    "savings": "Your savings",
+    "checkout": "Proceed to checkout",
+    "removeFromCartTooltip": "Remove item",
+    "selectItemCheckboxAria": "Select item",
+    "yourcart": "Your cart",
+    "notFound": "Your cart is empty",
+    "startFromHome": "Start from the homepage — you can find the desired product through search or browse the collections"
   },
 
   "common": {

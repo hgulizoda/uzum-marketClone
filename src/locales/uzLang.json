@@ -25,6 +25,30 @@
     "accessories": "Aksessuarlar",
     "more": "Yana"
   },
+  "cart": {
+    "selectAll": "Hammasini tanlash",
+    "deliveringToPickUps": "Yetkazib berish joyiga",
+    "deliveringToPickUpsPrice": "Yetkazib berish narxi",
+    "tomorrowDelivery": "Ertaga yetkazib beramiz",
+    "deliveredByUzumMarket": "Uzum market yetkazib berishi",
+    "remove": "Yo‘q qilish",
+    "quantity": "Miqdor",
+    "price": "Narx",
+    "seller": "Sotuvchi",
+    "products": "mahsulot",
+    "products_count": "Mahsulotlar ({count}):",
+    "yourOrder": "Buyurtmangiz",
+    "total": "Jami",
+    "withCard": "Uzum karta bilan",
+    "withoutCard": "Uzum kartasiz",
+    "savings": "Tejovingiz",
+    "checkout": "Rasmiylashtirishga o‘tish",
+    "removeFromCartTooltip": "Mahsulotni olib tashlash",
+    "selectItemCheckboxAria": "Mahsulotni tanlash",
+    "yourcart": "Savatingiz",
+    "notFound": "Savatingiz hozircha bo'sh",
+    "startFromHome": "Bosh sahifadan boshlang — kerakli tovarni qidiruv orqali topishingiz yoki to‘plamlarni ko‘rishingiz mumkin"
+  },
   "common": {
     "tomorrow": "Ertaga",
     "monthly": "oyiga"
