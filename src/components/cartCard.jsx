@@ -43,14 +43,12 @@ const CartCard = (product) => {
   }
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
-    const newData = cart.map((p) => {
-      if (p.id == product.id) {
-        return { ...p, checked: checked };
-      } else {
-        return p;
-      }
-    });
+    const isChecked = event.target.checked;
+    setChecked(isChecked);
+
+    const newData = cart.map((p) =>
+      p.id === product.id ? { ...p, checked: isChecked } : p
+    );
     setCart(newData);
   };
 
