@@ -181,7 +181,7 @@ const Cart = () => {
                 </Typography>
 
                 <Stack direction="row" justifyContent="space-between">
-                  <Typography fontSize="14px">{t("cart.widthCard")}</Typography>
+                  <Typography fontSize="14px">{t("cart.withCard")}</Typography>
                   <Stack>
                     <Typography
                       sx={{
