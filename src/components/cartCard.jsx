@@ -101,7 +101,7 @@ const CartCard = ({
               marginTop="10px"
             >
               <Typography sx={{ fontSize: "14px" }}>
-                <span style={{ color: "gray" }}>{t("cart.seller")}: </span>{" "}
+                <span style={{ color: "gray" }}>{t("cart.seller")}:</span>
                 {brand}
               </Typography>
               <ButtonGroup
