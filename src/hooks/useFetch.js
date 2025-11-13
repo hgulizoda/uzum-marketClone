@@ -15,8 +15,8 @@ function reducer(state, action) {
       return { ...state, data: payload };
     case "ERR":
       return { ...state, error: payload };
-    case "isloading":
-      return { ...state, isLoading: !state.isloading };
+    case "isLoading":
+      return { ...state, isLoading: !state.isLoading };
     default:
       return state;
   }
@@ -26,7 +26,7 @@ const useFetch = (url) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    dispatch({ type: "isloading" });
+    dispatch({ type: "isLoading" });
     axios
       .get(url)
       .then((res) => dispatch({ type: "ADD", payload: res.data.products }))

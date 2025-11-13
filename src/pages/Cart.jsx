@@ -18,6 +18,7 @@ const Cart = () => {
   function handleSelectAll(e) {
     if (!e.target.checked) {
       const newData = cart.map((p) => ({ ...p, checked: false }));
+
       setCart(newData);
     } else {
       const newData = cart.map((p) => ({ ...p, checked: true }));
@@ -27,6 +28,7 @@ const Cart = () => {
 
   let totalPrice = useMemo(() => {
     const newData = cart.filter((p) => p.checked);
+
     return newData.reduce((sum, cur) => {
       return sum + cur.price * cur.count;
     }, 0);
@@ -34,6 +36,7 @@ const Cart = () => {
 
   let totalPriceWithUzumCard = useMemo(() => {
     const newData = cart.filter((p) => p.checked);
+
     return newData.reduce((sum, cur) => {
       return (
         sum + (cur.price * (100 - cur.discountPercentage) * cur.count) / 100
@@ -84,11 +87,9 @@ const Cart = () => {
               </Stack>
 
               <Stack>
-                {cart.length ? (
-                  cart.map((p) => <CartCard key={p.id} {...p} />)
-                ) : (
-                  <p>Mahsulot topilmadi</p>
-                )}
+                {cart.map((p) => (
+                  <CartCard key={p.id} {...p} />
+                ))}
               </Stack>
             </Box>
 
@@ -96,7 +97,7 @@ const Cart = () => {
               sx={{
                 border: "1px solid lightgray",
                 borderRadius: "8px",
-                padding: "16px 16px 0",
+                padding: "16px 16px 16px",
                 width: "31%",
               }}
             >

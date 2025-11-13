@@ -10,15 +10,20 @@ import uzumCard from "../assets/icons/uzumCard.svg";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import useAppContext from "../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Card = (product) => {
+const Card = ({ onClick, ...rest }) => {
   const { setCart, cart } = useAppContext();
   const { t } = useTranslation();
-  const inCart = cart.find((p) => p.id === product.id);
-  function moveToCart() {
+  const inCart = cart.find((p) => p.id === rest.id);
+  const navigate = useNavigate();
+
+  function moveToCart(e) {
+    e.stopPropagation();
     if (inCart) {
       const newData = cart.map((p) => {
-        if (p.id === product.id) {
+        if (p.id === rest.id) {
           return { ...p, count: p.count + 1 };
         } else {
           return p;
@@ -26,18 +31,19 @@ const Card = (product) => {
       });
       setCart(newData);
     } else {
-      setCart([...cart, { ...product, count: 1 }]);
+      setCart([...cart, { ...rest, count: 1 }]);
     }
   }
 
-  function handleDecrement() {
+  function handleDecrement(e) {
+    e.stopPropagation();
     if (inCart.count === 1) {
-      const NewData = cart.filter((p) => p.id !== product.id);
+      const NewData = cart.filter((p) => p.id !== rest.id);
       setCart(NewData);
     } else {
       if (inCart) {
         const newData = cart.map((p) => {
-          if (p.id === product.id) {
+          if (p.id === rest.id) {
             return { ...p, count: p.count - 1 };
           } else {
             return p;
@@ -45,20 +51,22 @@ const Card = (product) => {
         });
         setCart(newData);
       } else {
-        setCart([...cart, { ...product, count: 1 }]);
+        setCart([...cart, { ...rest, count: 1 }]);
       }
     }
   }
 
   return (
     <>
-      <Box>
-        <CardMedia
-          component="img"
-          height="309px"
-          image={product.thumbnail}
-          sx={{ backgroundColor: "#F0F2F5", borderRadius: "8px" }}
-        ></CardMedia>
+      <Box onClick={onClick}>
+        <Link to={`/home/${rest.id}`} style={{ textDecoration: "none" }}>
+          <CardMedia
+            component="img"
+            height="309px"
+            image={rest.thumbnail}
+            sx={{ backgroundColor: "#F0F2F5", borderRadius: "8px" }}
+          ></CardMedia>
+        </Link>
         <CardContent sx={{ padding: "0", alignItems: "start" }}>
           <Typography
             color="primary"
@@ -69,14 +77,11 @@ const Card = (product) => {
               fontWeight: "600",
             }}
           >
-            $
-            {(product.price * (1 - product.discountPercentage / 100)).toFixed(
-              2
-            )}{" "}
+            ${(rest.price * (1 - rest.discountPercentage / 100)).toFixed(2)}{" "}
             <img src={uzumCard} alt="" />
           </Typography>
           <Typography sx={{ fontSize: "12px", color: "gray" }}>
-            ${product.price}
+            ${rest.price}
           </Typography>
 
           <Typography
@@ -87,11 +92,11 @@ const Card = (product) => {
               justifySelf: "left",
             }}
           >
-            ${(product.price / 12).toFixed(2)} {t("common.monthly")}
+            ${(rest.price / 12).toFixed(2)} {t("common.monthly")}
           </Typography>
 
           <Typography sx={{ fontSize: "12px", fontWeight: "500" }}>
-            {product.title}
+            {rest.title}
           </Typography>
 
           {inCart ? (

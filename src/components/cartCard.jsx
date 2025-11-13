@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Box,
   CardMedia,
@@ -14,29 +16,38 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import uzumCard from "../assets/icons/uzumCard.svg";
 import { useTranslation } from "react-i18next";
 import useAppContext from "../hooks/useAppContext";
-const CartCard = (product) => {
+import { Link } from "react-router-dom";
+
+const CartCard = ({
+  id,
+  checked,
+  thumbnail,
+  title,
+  brand,
+  count,
+  price,
+  discountPercentage,
+}) => {
   const { t } = useTranslation();
   const { cart, setCart } = useAppContext();
-  function handleCardIncerement() {
-    const newData = cart.map((p) => {
-      if (p.id === product.id) {
-        return { ...p, count: p.count + 1 };
-      } else return p;
-    });
-    setCart(newData);
+
+  function handleCardIncrement(e) {
+    e.stopPropagation();
+    setCart((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, count: p.count + 1 } : p))
+    );
   }
 
-  function handleCardDecrement() {
-    const newData = cart.map((p) => {
-      if (p.id === product.id) {
-        return { ...p, count: p.count - 1 };
-      } else return p;
-    });
-    setCart(newData);
+  function handleCardDecrement(e) {
+    e.stopPropagation();
+    setCart((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, count: p.count - 1 } : p))
+    );
   }
 
-  function deleteFromCart() {
-    const newData = cart.filter((p) => p.id !== product.id);
+  function deleteFromCart(e) {
+    e.stopPropagation();
+    const newData = cart.filter((p) => p.id !== id);
     setCart(newData);
   }
 
@@ -44,7 +55,7 @@ const CartCard = (product) => {
     const isChecked = event.target.checked;
 
     const newData = cart.map((p) =>
-      p.id === product.id ? { ...p, checked: isChecked } : p
+      p.id === id ? { ...p, checked: isChecked } : p
     );
     setCart(newData);
   };
@@ -62,24 +73,28 @@ const CartCard = (product) => {
       </Typography>
 
       <Stack direction="row" justifyContent="space-between">
-        <Stack direction="row" width="70%">
+        <Stack direction="row" width="70%" onClick={(e) => e.stopPropagation()}>
           <FormControlLabel
             control={
               <Checkbox
-                checked={product.checked || false}
+                checked={checked || false}
+                onClick={(e) => e.stopPropagation()}
                 onChange={handleChange}
               />
             }
             label=""
           />
-          <CardMedia
-            component="img"
-            image={product.thumbnail}
-            height="120px"
-            sx={{ width: "100px", backgroundColor: "secondary.main" }}
-          />
+          <Link to={`/cart/${id}`} style={{ textDecoration: "none" }}>
+            <CardMedia
+              component="img"
+              image={thumbnail}
+              height="120px"
+              sx={{ width: "100px", backgroundColor: "secondary.main" }}
+            />
+          </Link>
           <Stack sx={{ width: "100%", marginLeft: "20px" }}>
-            <Typography variant="paragraph">{product.title}</Typography>
+            <Typography variant="paragraph">{title}</Typography>
+
             <Stack
               direction="row"
               justifyContent="space-between"
@@ -87,7 +102,7 @@ const CartCard = (product) => {
             >
               <Typography sx={{ fontSize: "14px" }}>
                 <span style={{ color: "gray" }}>{t("cart.seller")}: </span>{" "}
-                {product.brand}
+                {brand}
               </Typography>
               <ButtonGroup
                 variant="outlined"
@@ -100,7 +115,7 @@ const CartCard = (product) => {
                     width: "40px",
                     height: "40px",
                   }}
-                  onClick={handleCardIncerement}
+                  onClick={handleCardIncrement}
                 >
                   +
                 </IconButton>
@@ -114,7 +129,7 @@ const CartCard = (product) => {
                     justifyContent: "center",
                   }}
                 >
-                  {product.count}
+                  {count}
                 </div>
                 <IconButton
                   sx={{
@@ -123,9 +138,7 @@ const CartCard = (product) => {
                     width: "40px",
                     height: "40px",
                   }}
-                  onClick={
-                    product.count > 1 ? handleCardDecrement : deleteFromCart
-                  }
+                  onClick={count > 1 ? handleCardDecrement : deleteFromCart}
                 >
                   -
                 </IconButton>
@@ -150,16 +163,12 @@ const CartCard = (product) => {
             {t("cart.remove")}
           </Button>
           <Typography color="primary.main" fontWeight="700" fontSize="20px">
-            $
-            {(
-              (product.price * (100 - product.discountPercentage)) /
-              100
-            ).toFixed(2)}
+            ${((price * (100 - discountPercentage)) / 100).toFixed(2)}
             <img src={uzumCard} alt="" style={{ marginLeft: "10px" }} />
           </Typography>
 
           <Typography fontWeight="bold">
-            {t("cart.withoutCard")}: ${product.price}
+            {t("cart.withoutCard")}: ${price}
           </Typography>
         </Stack>
       </Stack>
@@ -167,4 +176,4 @@ const CartCard = (product) => {
   );
 };
 
-export default CartCard;
+export default React.memo(CartCard);
