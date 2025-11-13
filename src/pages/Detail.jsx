@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -64,6 +64,7 @@ const DetailPage = () => {
         >
           <Box width="70%">
             <Typography variant="h4">{detailCard.title}</Typography>
+
             <Stack
               direction="row"
               spacing="10px"
